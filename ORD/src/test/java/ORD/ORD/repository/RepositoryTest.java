@@ -1,6 +1,7 @@
 package ORD.ORD.repository;
 
-import ORD.ORD.domain.Load;
+import ORD.ORD.domain.load.Load;
+import ORD.ORD.repository.load.LoadRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

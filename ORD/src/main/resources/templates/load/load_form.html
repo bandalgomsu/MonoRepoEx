@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        body{
+            padding:0px;
+            margin:0px;
+            }
+        #wrapper{
+            display: flex;
+            justify-content: center;
+            align-items:center;
+            min-height: 100vh;
+            border: 1px solid #FFBB00;
+            width:1054px;
+            padding: 10px;
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            margin-left: -538px;
+            }
+
+        #left{
+            border: 1px solid #487BE1;
+            width:500px;
+            float: left;
+            padding: 10px;
+            height:500px;
+            }
+
+        #right{
+            border: 1px solid #487BE1;
+            width:500px;
+            float: left;
+            padding: 10px;
+            margin-left: 10px;
+            height:500px
+            }
+
+
+    </style>
+
+
+</head>
+<body >
+
+<h3 style="text-align:center">코드 저장</h3>
+<div id="wrapper">
+
+    <div id ="left" >
+        <form method="post" id="load_form"  action="/load" name="load">
+            코드 : <input name="code" type="text"/>
+            <br>
+            클리어횟수 : <input name = "clear" type="text">
+            <br>
+            아이디 : <input name = "userId" type="text">
+            <br>
+            <input type="submit" value="저장">
+        </form>
+    </div>
+    <div id="right">
+        <form method="post" id="load"  action="/load/code" name="id">
+            아이디 : <input name = "userId" type="text">
+            <br>
+            <input type="submit" value="불러오기">
+        </form>
+
+        <br>
+
+        <tr th:each="code : ${code}">
+            <td th:text="${code}"></td>
+            <br>
+        </tr>
+    </div>
+</div>
+
+
+</body>
+</html>
