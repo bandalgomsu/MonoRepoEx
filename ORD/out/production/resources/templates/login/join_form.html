@@ -37,20 +37,20 @@
 </head>
 <body >
 
-<h3 style="text-align:center">로그인</h3>
+<h3 style="text-align:center">회원가입</h3>
 <div id="wrapper">
 
     <div id ="left" >
-        <form method="post" id="login_form"  action="/login" name="login">
+        <form method="post" id="join_form"  action="/join" name="join">
             Id : <input name="userId" type="text" placeholder="아이디를 입력해주세요"/>
             <br>
             Pw : <input name = "pw" type="text" placeholder="비밀번호를 입력해주세요">
             <br>
-            <input type="submit" value="로그인">
+            Email : <input name = "email" type="text" placeholder="이메일을 입력해주세요">
+            <br>
+            <input type="submit" value="완료">
         </form>
-        <form method="get" id="join"  action="/join" name="join">
-            <input type="submit" value="회원가입">
-        </form>
+
     </div>
 
 </div>

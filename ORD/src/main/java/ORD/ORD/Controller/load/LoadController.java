@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,14 +19,19 @@ import java.util.List;
 @RequiredArgsConstructor
 public class LoadController {
     private final LoadRepository loadRepository;
-    @GetMapping("/load")
-    public String load_Form(){
+    @GetMapping("/load/{id}")
+    public String load_Form(@PathVariable("id") String id,Model model){
+
+        List<Load> load = loadRepository.findByUserId(id);
+
+        model.addAttribute(load);
+
         return "/load/load_form";
     }
-    @PostMapping("/load")
-    public void save(@ModelAttribute LoadDTO loadDTO){
+    @PostMapping("/load/{id}")
+    public void save(@ModelAttribute LoadDTO loadDTO,@PathVariable("id") String id){
 
-        Load load = new Load(loadDTO.getUserId(),loadDTO.getCode(),loadDTO.getClear());
+        Load load = new Load(id,loadDTO.getCode(),loadDTO.getClear());
 
         loadRepository.save(load);
 

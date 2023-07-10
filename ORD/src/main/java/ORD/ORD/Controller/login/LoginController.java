@@ -4,16 +4,13 @@ package ORD.ORD.Controller.login;
 import ORD.ORD.domain.load.User;
 import ORD.ORD.domain.login.UserDTO;
 import ORD.ORD.repository.load.LoadRepository;
-import ORD.ORD.repository.login.LoginRepository;
-import lombok.AllArgsConstructor;
+import ORD.ORD.repository.join.JoinRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -22,29 +19,27 @@ import java.util.List;
 @Slf4j
 public class LoginController {
     private final LoadRepository loadRepository;
-    private final LoginRepository loginRepository;
+    private final JoinRepository joinRepository;
 
     @GetMapping("/login")
     public String login_form(){
-        loginRepository.save(new User("asd","asd"));
         return "/login/login_form";
     }
 
     @PostMapping("/login")
-    @ResponseBody
     public String login(@ModelAttribute UserDTO userDTO){
 
-        List<User> User = loginRepository.findByUserId(userDTO.getUserId());
-        User user = User.get(0);
-        log.info("asdasd {} {} ",user.getUserId(),user.getPw());
-        String userId = user.getUserId();
+        List<User> User = joinRepository.findByUserIdAndPw(userDTO.getUserId(),userDTO.getPw());
 
-        if (user == null){
-            return "redirect:/";
+        if (User.size() == 0){
+            return "redirect:/login";
         }
 
-        return "redirect:/load";
+        String userId = User.get(0).getUserId();
 
+        log.info(userId);
+
+        return "redirect:/load/"+userId;
 
     }
 

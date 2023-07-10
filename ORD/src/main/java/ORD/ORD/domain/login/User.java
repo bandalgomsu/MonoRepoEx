@@ -18,9 +18,18 @@ public class User {
     @Column(length = 255, nullable = false)
     private String pw;
 
+    @Column(length = 255, nullable = false)
+    private String email;
+
+
     public User(String userId, String pw) {
         this.userId = userId;
         this.pw = pw;
+    }
+    public User(String userId, String pw,String email) {
+        this.userId = userId;
+        this.pw = pw;
+        this.email=email;
     }
 
     public User() {
