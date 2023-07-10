@@ -50,27 +50,18 @@
 <div id="wrapper">
 
     <div id ="left" >
-        <form method="post" id="load_form"  action="/load" name="load">
+        <form method="post" id="load_form"  th:action="@{/load/{uid}(uid=${uid})}" name="load">
             코드 : <input name="code" type="text"/>
             <br>
             클리어횟수 : <input name = "clear" type="text">
             <br>
-            아이디 : <input name = "userId" type="text">
-            <br>
+
             <input type="submit" value="저장">
         </form>
     </div>
     <div id="right">
-        <form method="post" id="load"  action="/load/code" name="id">
-            아이디 : <input name = "userId" type="text">
-            <br>
-            <input type="submit" value="불러오기">
-        </form>
-
-        <br>
-
-        <tr th:each="code : ${code}">
-            <td th:text="${code}"></td>
+        <tr th:each="load : ${load}">
+            <td th:text="${load.code}"></td>
             <br>
         </tr>
     </div>

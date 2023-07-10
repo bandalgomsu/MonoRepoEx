@@ -37,7 +37,6 @@ public class LoginController {
 
         String userId = User.get(0).getUserId();
 
-        log.info(userId);
 
         return "redirect:/load/"+userId;
 

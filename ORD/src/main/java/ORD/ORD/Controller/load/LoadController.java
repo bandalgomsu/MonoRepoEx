@@ -19,39 +19,30 @@ import java.util.List;
 @RequiredArgsConstructor
 public class LoadController {
     private final LoadRepository loadRepository;
-    @GetMapping("/load/{id}")
-    public String load_Form(@PathVariable("id") String id,Model model){
+    @GetMapping("/load/{uid}")
+    public String load_Form(@PathVariable("uid") String uid,Model model){
 
-        List<Load> load = loadRepository.findByUserId(id);
+        List<Load> load = loadRepository.findByUserId(uid);
 
-        model.addAttribute(load);
-
+        model.addAttribute("load",load);
+        model.addAttribute(uid);
         return "/load/load_form";
     }
-    @PostMapping("/load/{id}")
-    public void save(@ModelAttribute LoadDTO loadDTO,@PathVariable("id") String id){
+    @PostMapping("/load/{uid}")
+    public String save(@ModelAttribute LoadDTO loadDTO,@PathVariable("uid") String uid,Model model){
 
-        Load load = new Load(id,loadDTO.getCode(),loadDTO.getClear());
+        Load load = new Load(uid,loadDTO.getCode(),loadDTO.getClear());
 
         loadRepository.save(load);
 
-        log.info("Pppp{}",loadDTO.getCode());
-    }
+        model.addAttribute(uid);
 
 
-    @PostMapping("/load/code")
-    public String load(IdDTO id, Model model){
-        log.info("asdasdasdadasdasdasd {}",id.getUserId());
-        List<Load> byUserId = loadRepository.findByUserId(id.getUserId());
-        List<String> code = new ArrayList<>();
-        for (Load load : byUserId) {
-            code.add(load.getCode());
-        }
-        model.addAttribute("code",code);
-
-        return "/load/load_form";
+        return "redirect:/load/"+uid;
 
     }
+
+
 
     @ResponseBody
     @GetMapping("/load/app")
