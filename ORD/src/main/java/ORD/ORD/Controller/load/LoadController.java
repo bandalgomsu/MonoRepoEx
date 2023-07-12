@@ -22,8 +22,8 @@ public class LoadController {
     @GetMapping("/load/{uid}")
     public String load_Form(@PathVariable("uid") String uid,Model model){
 
-        List<Load> load = loadRepository.findByUserId(uid);
-
+        List<Load> load = loadRepository.findByUserIdOrderByClear(uid);
+        model.addAttribute("clear",load.get(load.size()-1));
         model.addAttribute("load",load);
         model.addAttribute(uid);
         return "/load/load_form";
@@ -35,8 +35,7 @@ public class LoadController {
 
         loadRepository.save(load);
 
-        model.addAttribute(uid);
-
+        model.addAttribute("uid",uid);
 
         return "redirect:/load/"+uid;
 

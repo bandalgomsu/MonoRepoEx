@@ -10,7 +10,8 @@ import java.util.List;
 @Repository
 @Transactional(readOnly = true)
 public interface LoadRepository extends JpaRepository<Load,Long> {
-    List<Load> findByUserId(String userId);
+    List<Load> findByUserIdOrderByClear(String userId);
+
 
 
 
