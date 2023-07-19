@@ -29,7 +29,10 @@
             padding: 10px;
             height:500px;
             }
-
+        .error{
+            color:red;
+            background-color:red;
+        }
 
     </style>
 
@@ -41,12 +44,18 @@
 <div id="wrapper">
 
     <div id ="left" >
-        <form method="post" id="join_form"  action="/join" name="join">
-            Id : <input name="userId" type="text" placeholder="아이디를 입력해주세요"/>
+        <form method="post" id="join_form"  action="/join" name="join" th:object="${joinDTO}">
+            Id : <input name="userId" type="text" placeholder="아이디를 입력해주세요"
+                        th:classappend="${#fields.hasErrors('userId')} ? 'error'"
+            />
             <br>
-            Pw : <input name = "pw" type="text" placeholder="비밀번호를 입력해주세요">
+            Pw : <input name = "pw" type="text" placeholder="비밀번호를 입력해주세요"
+                        th:classappend="${#fields.hasErrors('pw')} ? 'error'"
+            />
             <br>
-            Email : <input name = "email" type="text" placeholder="이메일을 입력해주세요">
+            Email : <input name = "email" type="text" placeholder="이메일을 입력해주세요"
+                           th:classappend="${#fields.hasErrors('email')} ? 'error'"
+            />
             <br>
             <input type="submit" value="완료">
         </form>

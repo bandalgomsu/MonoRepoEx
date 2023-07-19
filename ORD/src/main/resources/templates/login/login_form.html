@@ -29,7 +29,10 @@
             padding: 10px;
             height:500px;
             }
-
+        .error{
+            color:red;
+            background-color:red;
+        }
 
     </style>
 
@@ -41,10 +44,14 @@
 <div id="wrapper">
 
     <div id ="left" >
-        <form method="post" id="login_form"  action="/login" name="login">
-            Id : <input name="userId" type="text" placeholder="아이디를 입력해주세요"/>
+        <form method="post" id="login_form"  action="/login" name="login" th:object="${userDTO}"  >
+            Id : <input name="userId" type="text" placeholder="아이디를 입력해주세요"
+                        th:classappend="${#fields.hasErrors('userId')} ? 'error'">
             <br>
-            Pw : <input name = "pw" type="text" placeholder="비밀번호를 입력해주세요">
+
+            Pw : <input name = "pw" type="text" placeholder="비밀번호를 입력해주세요"
+                        th:classappend="${#fields.hasErrors('pw')} ? 'error'"
+        >
             <br>
             <input type="submit" value="로그인">
         </form>
