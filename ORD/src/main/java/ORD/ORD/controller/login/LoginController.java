@@ -14,9 +14,11 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
@@ -39,7 +41,7 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public String login(@ModelAttribute @Valid UserDTO userDTO , Errors error){
+    public String login(@ModelAttribute @Valid UserDTO userDTO , Errors error , RedirectAttributes rttr){
 
         if(error.hasErrors()){
             log.info("asdadsa{}",error.getFieldError());
@@ -47,16 +49,13 @@ public class LoginController {
         }
 
 
-        List<User> User = joinRepository.findByUserIdAndPw(userDTO.getUserId(),userDTO.getPw());
+        Optional<User> user = joinRepository.findByUserIdAndPw(userDTO.getUserId(),userDTO.getPw());
 
-        if (User.size() == 0){
-            return "redirect:/login";
-        }
+        String userId = user.get().getUserId();
 
-        String userId = User.get(0).getUserId();
+        rttr.addAttribute("userId",userId);
 
-
-        return "redirect:/load/"+userId;
+        return "redirect:/load";
 
     }
 

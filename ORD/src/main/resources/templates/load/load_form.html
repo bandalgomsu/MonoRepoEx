@@ -55,7 +55,7 @@
 <div id="wrapper">
 
     <div id ="left" >
-        <form method="post" id="load_form"  th:action="@{/load/{uid}(uid=${uid})}" name="load">
+        <form method="post" id="load_form"  action="/load/save" name="load">
             코드 : <input name="code" type="text"/>
             <br>
             클리어횟수 : <input name = "clear" type="text">
@@ -65,11 +65,11 @@
         </form>
         <br>
         <div id="status">
-        Id: <span th:text="${uid}"></span>
+        Id: <span th:text="${userId}"></span>
         <br>
-        클리어횟수: <span th:text="${clear.clear}"></span>
+        클리어횟수: <span th:text="${clear}"></span>
         <br>
-        최근코드 : <span th:text="${clear.code}"></span>  <input type="submit" value="복사">
+        최근코드 : <span th:text="${code}"></span>  <input type="submit" value="복사">
         </div>
     </div>
     <div id="right">

@@ -21,15 +21,17 @@ public class User {
     @Column(length = 255, nullable = false)
     private String email;
 
-
+    @Column(length = 255, nullable = false)
+    private String Role;
     public User(String userId, String pw) {
         this.userId = userId;
         this.pw = pw;
     }
-    public User(String userId, String pw,String email) {
+    public User(String userId, String pw,String email,String Role) {
         this.userId = userId;
         this.pw = pw;
         this.email=email;
+        this.Role=Role;
     }
 
     public User() {

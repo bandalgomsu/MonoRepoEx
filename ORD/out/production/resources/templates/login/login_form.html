@@ -30,7 +30,7 @@
             height:500px;
             }
         .error{
-            color:red;
+
             background-color:red;
         }
 
@@ -45,6 +45,7 @@
 
     <div id ="left" >
         <form method="post" id="login_form"  action="/login" name="login" th:object="${userDTO}"  >
+
             Id : <input name="userId" type="text" placeholder="아이디를 입력해주세요"
                         th:classappend="${#fields.hasErrors('userId')} ? 'error'">
             <br>

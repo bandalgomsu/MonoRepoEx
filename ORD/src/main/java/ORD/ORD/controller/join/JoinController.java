@@ -35,7 +35,7 @@ public class JoinController {
             return "/login/join_form";
         }
 
-        joinRepository.save(new User(joinDTO.getUserId(),joinDTO.getPw(),joinDTO.getEmail()));
+        joinRepository.save(new User(joinDTO.getUserId(),joinDTO.getPw(),joinDTO.getEmail(),"USER_ROLE"));
 
         return "redirect:/login";
     }

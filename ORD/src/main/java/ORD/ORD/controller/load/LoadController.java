@@ -5,10 +5,12 @@ import ORD.ORD.domain.load.LoadDTO;
 import ORD.ORD.repository.load.LoadRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -16,25 +18,38 @@ import java.util.List;
 @RequiredArgsConstructor
 public class LoadController {
     private final LoadRepository loadRepository;
-    @GetMapping("/load/{uid}")
-    public String load_Form(@PathVariable("uid") String uid,Model model){
 
-        List<Load> load = loadRepository.findByUserIdOrderByClear(uid);
-        model.addAttribute("clear",load.get(load.size()-1));
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/load")
+    public String load_Form(Principal principal, Model model){
+        String userId=principal.getName();
+        log.info("ASDasdasd{}",userId);
+        List<Load> load = loadRepository.findByUserIdOrderByClear(userId);
+
+        if(load.size() == 0){
+            model.addAttribute("userId",userId);
+            model.addAttribute("clear","");
+            model.addAttribute("code"," ");
+            model.addAttribute("load",new Load());
+
+            return "/load/load_form";
+        }
+
+        model.addAttribute("userId",userId);
+        model.addAttribute("clear",load.get(load.size()-1).getClear());
+        model.addAttribute("code",load.get(load.size()-1).getCode());
         model.addAttribute("load",load);
-        model.addAttribute(uid);
+
         return "/load/load_form";
     }
-    @PostMapping("/load/{uid}")
-    public String save(@ModelAttribute LoadDTO loadDTO,@PathVariable("uid") String uid,Model model){
+    @PostMapping("/load/save")
+    public String save(@ModelAttribute LoadDTO loadDTO,Principal principal,Model model){
 
-        Load load = new Load(uid,loadDTO.getCode(),loadDTO.getClear());
+        String userId = principal.getName();
 
-        loadRepository.save(load);
+        loadRepository.save(new Load(userId,loadDTO.getCode(),loadDTO.getClear()));
 
-        model.addAttribute("uid",uid);
-
-        return "redirect:/load/"+uid;
+        return "redirect:/load/";
 
     }
 
