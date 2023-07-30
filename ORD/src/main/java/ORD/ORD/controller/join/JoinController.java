@@ -1,6 +1,6 @@
 package ORD.ORD.controller.join;
 
-import ORD.ORD.domain.load.User;
+import ORD.ORD.domain.login.User;
 import ORD.ORD.domain.login.JoinDTO;
 import ORD.ORD.repository.join.JoinRepository;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 @Controller
 @RequiredArgsConstructor
@@ -29,9 +29,10 @@ public class JoinController {
     }
 
     @PostMapping("/join")
-    public String join(@ModelAttribute @Valid JoinDTO joinDTO, Errors error){
+    public String join(@ModelAttribute @Valid JoinDTO joinDTO, Errors error,Model model){
 
         if(error.hasErrors()){
+            model.addAttribute("joinDTO",joinDTO);
             return "/login/join_form";
         }
 

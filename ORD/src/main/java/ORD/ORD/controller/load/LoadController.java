@@ -3,6 +3,7 @@ package ORD.ORD.controller.load;
 import ORD.ORD.domain.load.Load;
 import ORD.ORD.domain.load.LoadDTO;
 import ORD.ORD.repository.load.LoadRepository;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.regex.Pattern;
 
 @Controller
 @Slf4j
@@ -43,13 +45,20 @@ public class LoadController {
         return "/load/load_form";
     }
     @PostMapping("/load/save")
-    public String save(@ModelAttribute LoadDTO loadDTO,Principal principal,Model model){
+    public String save(@ModelAttribute @Valid LoadDTO loadDTO, Principal principal, Model model){
 
         String userId = principal.getName();
 
-        loadRepository.save(new Load(userId,loadDTO.getCode(),loadDTO.getClear()));
+        String pattern = "^([0-9a-zA-Z!@#$%^&*()_+]{11}$)";
 
-        return "redirect:/load/";
+
+        if(Pattern.matches(pattern,loadDTO.getCode())){
+            loadRepository.save(new Load(userId,"-load "+loadDTO.getCode(),loadDTO.getClear()));
+        }
+        else {
+            loadRepository.save(new Load(userId, loadDTO.getCode(), loadDTO.getClear()));
+        }
+        return "redirect:/load";
 
     }
 

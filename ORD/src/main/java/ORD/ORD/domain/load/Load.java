@@ -2,7 +2,7 @@ package ORD.ORD.domain.load;
 
 import lombok.*;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Getter
 @Setter

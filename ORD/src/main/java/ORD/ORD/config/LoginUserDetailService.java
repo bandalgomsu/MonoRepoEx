@@ -1,6 +1,7 @@
 package ORD.ORD.config;
 
-import ORD.ORD.domain.load.User;
+import ORD.ORD.domain.login.User;
+import ORD.ORD.domain.login.User;
 import ORD.ORD.repository.join.JoinRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -9,7 +10,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Column;
+import jakarta.persistence.Column;
 import java.util.Optional;
 
 import static org.springframework.security.core.userdetails.User.*;

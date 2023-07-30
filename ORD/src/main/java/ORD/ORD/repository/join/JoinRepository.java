@@ -1,6 +1,6 @@
 package ORD.ORD.repository.join;
 
-import ORD.ORD.domain.load.User;
+import ORD.ORD.domain.login.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;

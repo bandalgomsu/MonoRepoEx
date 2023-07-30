@@ -1,7 +1,7 @@
 package ORD.ORD.controller.login;
 
 
-import ORD.ORD.domain.load.User;
+import ORD.ORD.domain.login.User;
 import ORD.ORD.domain.login.UserDTO;
 import ORD.ORD.repository.load.LoadRepository;
 import ORD.ORD.repository.join.JoinRepository;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 

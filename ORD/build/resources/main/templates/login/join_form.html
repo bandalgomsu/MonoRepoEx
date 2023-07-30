@@ -40,25 +40,26 @@
 </head>
 <body >
 
-<h3 style="text-align:center">로그인</h3>
+<h3 style="text-align:center">회원가입</h3>
 <div id="wrapper">
 
     <div id ="left" >
-        <form method="post" id="login_form"  action="/login" name="login" th:object="${userDTO}"  >
-
+        <form method="post" id="join_form"  action="/join" name="join" th:object="${joinDTO}">
             Id : <input name="userId" type="text" placeholder="아이디를 입력해주세요"
-                        th:classappend="${#fields.hasErrors('userId')} ? 'error'">
+                        th:classappend="${#fields.hasErrors('userId')} ? 'error'"
+            />
             <br>
-
-            Pw : <input name = "pw" type="password" placeholder="비밀번호를 입력해주세요"
+            Pw : <input name = "pw" type="text" placeholder="비밀번호를 입력해주세요"
                         th:classappend="${#fields.hasErrors('pw')} ? 'error'"
-        >
+            />
             <br>
-            <input type="submit" value="로그인">
+            Email : <input name = "email" type="text" placeholder="이메일을 입력해주세요"
+                           th:classappend="${#fields.hasErrors('email')} ? 'error'"
+            />
+            <br>
+            <input type="submit" value="완료">
         </form>
-        <form method="get" id="join"  action="/join" name="join">
-            <input type="submit" value="회원가입">
-        </form>
+
     </div>
 
 </div>
