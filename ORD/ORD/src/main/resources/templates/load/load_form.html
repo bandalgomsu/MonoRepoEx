@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        body{
+            padding:0px;
+            margin:0px;
+            }
+        #wrapper{
+            display: flex;
+            justify-content: center;
+            align-items:center;
+            min-height: 100vh;
+            border: 1px solid #FFBB00;
+            width:1054px;
+            padding: 10px;
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            margin-left: -538px;
+            }
+
+        #left{
+            border: 1px solid #487BE1;
+            width:500px;
+            float: left;
+            padding: 10px;
+            height:500px;
+            }
+
+        #right{
+            border: 1px solid #487BE1;
+            width:500px;
+            float: left;
+            padding: 10px;
+            margin-left: 10px;
+            height:500px
+            }
+        #status{
+            border : 1px solid #487BE1;
+            padding : 10px;
+
+
+        }
+        #logout{
+            align:right;
+
+        }
+
+    </style>
+
+
+</head>
+<body >
+
+<h3 style="text-align:center">코드 저장</h3>
+
+<form action="/logout" method="post" id="logout">
+    <input type="submit" value="로그아웃">
+
+</form>
+
+<div id="wrapper">
+
+    <div id ="left" >
+        <form method="post" id="load_form"  action="/load/save" name="load">
+            코드 : <input name="code" type="text"/>
+            <br>
+            클리어횟수 : <input name = "clear" type="text">
+            <br>
+
+            <input type="submit" value="저장">
+        </form>
+        <br>
+        <div id="status" >
+        Id: <span th:text="${userId}"></span>
+        <br>
+        클리어횟수: <span th:text="${clear}"></span>
+        <br>
+        최근코드 : <span th:text="${code}"></span>  <input type="submit" value="복사">
+        </div>
+    </div>
+    <div id="right" style="overflow:scroll">
+        <h5>코드</h5>
+        <br>
+
+
+        <tr th:each="load : ${load}" >
+            <td th:text="|코드 : ${load.code}|"> </td>
+            <br>
+            <td th:text="|클리어 횟수 : ${load.clear}|"></td>
+            <td><input type="submit" value="복사"></td>
+            <br>
+        </tr>
+
+    </div>
+</div>
+
+
+</body>
+</html>

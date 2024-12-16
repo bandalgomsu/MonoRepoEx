@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h3>코드 저장</h3>
+    <form method="post" id="load_form"  action="/load" name="load">
+
+        코드 : <input name="code" type="text"/>
+        <br>
+        클리어횟수 : <input name = "clear" type="text">
+        <br>
+        아이디 : <input name = "userId" type="text">
+        <br>
+        <input type="submit" value="저장">
+    </form>
+
+    <form method="post" id="load"  action="/load/code" name="id">
+        아이디 : <input name = "userId" type="text">
+        <br>
+        <input type="submit" value="불러오기">
+    </form>
+
+    <br>
+
+    <tr th:each="code : ${code}">
+        <td th:text="${code}"></td>
+        <br>
+    </tr>
+
+
+
+
+</body>
+</html>
