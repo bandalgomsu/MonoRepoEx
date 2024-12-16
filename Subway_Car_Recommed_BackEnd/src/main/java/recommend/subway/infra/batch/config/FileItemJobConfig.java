@@ -19,7 +19,7 @@ import recommend.subway.infra.batch.writer.StationWriter;
 @RequiredArgsConstructor
 @Configuration
 public class FileItemJobConfig {
-    private static final int CHUNK_SIZE = 1000;
+    private static final int CHUNK_SIZE = 10000;
 
     private final JobRepository jobRepository;
     private final PlatformTransactionManager transactionManager;

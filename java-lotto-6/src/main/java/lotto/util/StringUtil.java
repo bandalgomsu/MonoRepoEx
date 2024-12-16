@@ -17,7 +17,7 @@ public class StringUtil {
 
     public static List<Integer> parseComma(String comma) {
         List<Integer> result = new ArrayList<>();
-        String[] split = comma.split(",", -1);
+        String[] split = comma.split(",d", -1);
 
         for (String splitValue : split) {
             validateBlank(splitValue);
