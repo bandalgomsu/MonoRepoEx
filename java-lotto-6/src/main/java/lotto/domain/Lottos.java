@@ -6,7 +6,7 @@ import lotto.exception.ExceptionMessage;
 import lotto.util.NumbersGenerator;
 
 public class Lottos {
-    private static final int TEN_THOUSAND = 2;
+    private static final int TEN_THOUSAND = 1;
 
     private final List<Lotto> lottos;
     private final NumbersGenerator numbersGenerator;
