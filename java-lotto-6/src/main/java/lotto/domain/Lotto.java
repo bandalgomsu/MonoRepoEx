@@ -4,7 +4,7 @@ import java.util.List;
 import lotto.exception.ExceptionMessage;
 
 public class Lotto {
-    private static final int LOTTO_SIZE = 3;
+    private static final int LOTTO_SIZE = 1;
     private static final int MIN_RANGE = 1;
     private static final int MAX_RANGE = 45;
 
