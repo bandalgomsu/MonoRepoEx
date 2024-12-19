@@ -7,7 +7,6 @@ public class Lotto {
     private static final int LOTTO_SIZE = 3;
     private static final int MIN_RANGE = 1;
     private static final int MAX_RANGE = 45;
-
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
